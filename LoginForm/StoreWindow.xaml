@@ -331,7 +331,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <Border CornerRadius="15 0 0 15" 
-                            Background="#FF151515">
+                            Background="#FF1B1B1B">
                     </Border>
                     <StackPanel VerticalAlignment="Center"
                                 Margin="15">

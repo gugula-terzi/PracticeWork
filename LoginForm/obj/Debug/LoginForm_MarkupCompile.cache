@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\terzi\Source\Repos\CS_LaboratoryWorks\MyProjects\LoginForm\obj\Debug\
+D:\C#\PracticeWork\LoginForm\obj\Debug\
 LoginForm
 none
 false
 DEBUG;TRACE
-C:\Users\terzi\Source\Repos\CS_LaboratoryWorks\MyProjects\LoginForm\App.xaml
+D:\C#\PracticeWork\LoginForm\App.xaml
 8765841529
 
 91932179142
-501317088345
+51818930899
 MainWindow.xaml;MessageWindow.xaml;RegistrationWindow.xaml;StoreWindow.xaml;Styles\Button.xaml;Styles\ComboBox.xaml;Styles\DataGrid.xaml;Styles\TextBox.xaml;
 
 False
