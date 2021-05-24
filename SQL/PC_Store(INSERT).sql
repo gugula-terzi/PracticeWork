@@ -1,6 +1,6 @@
 INSERT graphics_card 
 VALUES (1, 'PNY Quadro RTX4000', 'GDDR6', 8, '256bit', 'DisplayPort x 4', 864.76),
-	   (2, 'Sapphire Radeon PULSE RX 550', 'GDDR5', 2, '64bit', 'DisplayPort x 1, HDMI x 1, DVI x 1', 94.16),
+       (2, 'Sapphire Radeon PULSE RX 550', 'GDDR5', 2, '64bit', 'DisplayPort x 1, HDMI x 1, DVI x 1', 94.16),
        (3, 'Palit GeForce GTX1050Ti StormX', 'GDDR5', 4, '128bit', 'DisplayPort x 1, HDMI x 1, DVI x 1', 310.08),
        (4, 'AMD Radeon Pro WX9100', 'GDDR6', 16, '2048bit', 'DisplayPort x 4', 1538.17),
        (5, 'ASUS GeForce GT 710-SL-1GD5-BRK', 'GDDR5', 1, '32bit', 'DVI x 1, HDMI x 1', 44.50),
