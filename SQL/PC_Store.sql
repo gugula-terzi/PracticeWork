@@ -82,7 +82,7 @@ CREATE TABLE `processor` (
   `cpu_cores` int NOT NULL,
   `threads` int NOT NULL,
   `cpu_speed` float NOT NULL,
-  `integrated_graphics` varchar(10) not null,
+  `integrated_graphics` varchar(20) not null,
   `price` float NOT NULL,
   PRIMARY KEY (`product_id`)
 );
@@ -92,8 +92,8 @@ CREATE TABLE `graphics_card` (
   `product_name` varchar(40) NOT NULL,
   `vram_type` varchar(12) NOT NULL,
   `vram_capacity` int NOT NULL,
-  `bus_width` varchar(6) NOT NULL,
-  `connectors` varchar(25) NOT NULL,
+  `bus_width` varchar(15) NOT NULL,
+  `connectors` varchar(40) NOT NULL,
   `price` float NOT NULL,
   PRIMARY KEY (`product_id`)
 );
@@ -134,6 +134,7 @@ CREATE TABLE basket (
   counts int NOT NULL,
   date_add datetime NOT NULL,
   PRIMARY KEY (id),
+  CONSTRAINT FK_counts_basket UNIQUE (counts),
   FOREIGN KEY (product_id) REFERENCES product(product_code) ,
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
@@ -147,5 +148,32 @@ CREATE TABLE orders (
     purchase_date DATETIME NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES basket(user_id),
-    FOREIGN KEY (product_id) REFERENCES basket(product_id)
+    FOREIGN KEY (product_id) REFERENCES basket(product_id),
+    FOREIGN KEY (counts) REFERENCES basket(counts)
+);
+
+CREATE TABLE `users` (
+  `user_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user_login` varchar(60) NOT NULL,
+  `password_hash` varchar(200) NOT NULL,
+  `password_salt` varchar(20) NOT NULL,
+  `user_name` varchar(60) NOT NULL,
+  `user_lastname` varchar(60) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `user_role` int NOT NULL,
+  `created_at` datetime NOT NULL,
+  `last_login` datetime NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_id` (`user_id`),
+  UNIQUE KEY `user_login` (`user_login`),
+  UNIQUE KEY `email` (`email`),
+  KEY `user_role` (`user_role`),
+  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`user_role`) REFERENCES `roles` (`role_id`)
+);
+
+CREATE TABLE `roles` (
+  `role_id` int NOT NULL,
+  `role_type` varchar(60) NOT NULL,
+  PRIMARY KEY (`role_id`),
+  UNIQUE KEY `role_id` (`role_id`)
 );
