@@ -1,19 +1,25 @@
+use `llbqqdkmx4mkoa68`;
+
 CREATE TABLE `ram` (
   `product_id` int NOT NULL,
   `product_name` varchar(40) NOT NULL,
   `ddr_type` varchar(12) NOT NULL,
-  `frequency` int NOT NULL,
-  `capacity` int NOT NULL,
+  `frequency` varchar(20) NOT NULL,
+  `capacity` varchar(10) NOT NULL,
   `num_of_modules` varchar(12) not null,
-  `type` varchar(10) not null,
+  `type` varchar(15) not null,
   `price` float NOT NULL,
-  PRIMARY KEY (`product_id`)
+  PRIMARY KEY (`product_id`),
+  CONSTRAINT FK_product_id UNIQUE (product_id),
+  CONSTRAINT FK_product_name UNIQUE (product_name),
+  FOREIGN KEY (product_id) REFERENCES product(product_code) ON DELETE CASCADE,
+  FOREIGN KEY (product_name) REFERENCES product(product_name) ON DELETE CASCADE
 );
 
 CREATE TABLE power_supply (
 	product_id INT NOT NULL,
-    product_name VARCHAR(40) NOT NULL,
-    power VARCHAR(8) NOT NULL,
+    product_name VARCHAR(50) NOT NULL,
+    power VARCHAR(15) NOT NULL,
     cable_management BOOLEAN NOT NULL,
     sata_connectors INT NOT NULL,
     form_factor VARCHAR(15) NOT NULL,
@@ -21,7 +27,11 @@ CREATE TABLE power_supply (
     pcie_6pin_connectors INT NOT NULL,
     molex_connectors INT NOT NULL,
     price FLOAT NOT NULL,
-    PRIMARY KEY (product_id)
+    PRIMARY KEY (product_id),    
+  CONSTRAINT FK_product_id UNIQUE (product_id),
+  CONSTRAINT FK_product_name UNIQUE (product_name),
+  FOREIGN KEY (product_id) REFERENCES product(product_code) ON DELETE CASCADE,
+  FOREIGN KEY (product_name) REFERENCES product(product_name) ON DELETE CASCADE
 );
 
 CREATE TABLE hdd_drives (
@@ -33,20 +43,28 @@ CREATE TABLE hdd_drives (
     spindle_speed VARCHAR(10) NOT NULL,
     cache_capacity VARCHAR(10) NOT NULL,
     price FLOAT NOT NULL,
-    PRIMARY KEY (product_id)
+    PRIMARY KEY (product_id),
+  CONSTRAINT FK_product_id UNIQUE (product_id),
+  CONSTRAINT FK_product_name UNIQUE (product_name),
+  FOREIGN KEY (product_id) REFERENCES product(product_code) ON DELETE CASCADE,
+  FOREIGN KEY (product_name) REFERENCES product(product_name) ON DELETE CASCADE
 );
 
 CREATE TABLE ssd_drives (
 	product_id INT NOT NULL,
     product_name VARCHAR(40) NOT NULL,
-    interface_type VARCHAR(10) NOT NULL,
+    interface_type VARCHAR(20) NOT NULL,
     capacity VARCHAR(10) NOT NULL,
     form_factor VARCHAR(10) NOT NULL,
     nvme BOOLEAN NOT NULL,
     reading_speed VARCHAR(10) NOT NULL,
     writing_speed VARCHAR(10) NOT NULL,
     price FLOAT NOT NULL,
-    PRIMARY KEY (product_id)
+    PRIMARY KEY (product_id),
+  CONSTRAINT FK_product_id UNIQUE (product_id),
+  CONSTRAINT FK_product_name UNIQUE (product_name),
+  FOREIGN KEY (product_id) REFERENCES product(product_code) ON DELETE CASCADE,
+  FOREIGN KEY (product_name) REFERENCES product(product_name) ON DELETE CASCADE
 );
 
 CREATE TABLE tower_cooling (
@@ -57,10 +75,14 @@ CREATE TABLE tower_cooling (
     weight VARCHAR(10) NOT NULL,
     fan_size VARCHAR(10) NOT NULL,
     cooler_type VARCHAR(10) NOT NULL,
-    cpu_socket VARCHAR(25) NOT NULL,
+    cpu_socket VARCHAR(40) NOT NULL,
     max_volume VARCHAR(10) NOT NULL,
     price FLOAT NOT NULL,
-    PRIMARY KEY (product_id)
+    PRIMARY KEY (product_id),
+  CONSTRAINT FK_product_id UNIQUE (product_id),
+  CONSTRAINT FK_product_name UNIQUE (product_name),
+  FOREIGN KEY (product_id) REFERENCES product(product_code) ON DELETE CASCADE,
+  FOREIGN KEY (product_name) REFERENCES product(product_name) ON DELETE CASCADE
 );
 
 CREATE TABLE water_cooling (
@@ -72,7 +94,11 @@ CREATE TABLE water_cooling (
     installed_fans INT NOT NULL,
     max_volume VARCHAR(10) NOT NULL,
     price FLOAT NOT NULL,
-	PRIMARY KEY (product_id)
+	PRIMARY KEY (product_id),
+  CONSTRAINT FK_product_id UNIQUE (product_id),
+  CONSTRAINT FK_product_name UNIQUE (product_name),
+  FOREIGN KEY (product_id) REFERENCES product(product_code) ON DELETE CASCADE,
+  FOREIGN KEY (product_name) REFERENCES product(product_name) ON DELETE CASCADE
 );
 
 CREATE TABLE `processor` (
@@ -82,9 +108,13 @@ CREATE TABLE `processor` (
   `cpu_cores` int NOT NULL,
   `threads` int NOT NULL,
   `cpu_speed` float NOT NULL,
-  `integrated_graphics` varchar(20) not null,
+  `integrated_graphics` varchar(30) not null,
   `price` float NOT NULL,
-  PRIMARY KEY (`product_id`)
+  PRIMARY KEY (`product_id`),
+  CONSTRAINT FK_product_id UNIQUE (product_id),
+  CONSTRAINT FK_product_name UNIQUE (product_name),
+  FOREIGN KEY (product_id) REFERENCES product(product_code) ON DELETE CASCADE,
+  FOREIGN KEY (product_name) REFERENCES product(product_name) ON DELETE CASCADE
 );
 
 CREATE TABLE `graphics_card` (
@@ -95,31 +125,22 @@ CREATE TABLE `graphics_card` (
   `bus_width` varchar(15) NOT NULL,
   `connectors` varchar(40) NOT NULL,
   `price` float NOT NULL,
-  PRIMARY KEY (`product_id`)
+  PRIMARY KEY (`product_id`),
+  CONSTRAINT FK_product_id UNIQUE (product_id),
+  CONSTRAINT FK_product_name UNIQUE (product_name),
+  FOREIGN KEY (product_id) REFERENCES product(product_code) ON DELETE CASCADE,
+  FOREIGN KEY (product_name) REFERENCES product(product_name) ON DELETE CASCADE
 );
 
 CREATE TABLE product (
 	product_code INT NOT NULL,
-    product_name VARCHAR(40) NOT NULL,
+    product_name VARCHAR(50) NOT NULL,
     product_type INT NOT NULL,
-    FOREIGN KEY (product_type) REFERENCES product_types(type_id),
-    FOREIGN KEY (product_code) REFERENCES ram(product_id),
-    FOREIGN KEY (product_code) REFERENCES graphics_card(product_id),
-    FOREIGN KEY (product_code) REFERENCES processor(product_id),
-    FOREIGN KEY (product_code) REFERENCES hdd_drives(product_id),
-    FOREIGN KEY (product_code) REFERENCES power_supply(product_id),
-    FOREIGN KEY (product_code) REFERENCES tower_cooling(product_id),
-    FOREIGN KEY (product_code) REFERENCES water_cooling(product_id),
-    FOREIGN KEY (product_code) REFERENCES ssd_drives(product_id),
-    FOREIGN KEY (product_name) REFERENCES ram(product_name),
-    FOREIGN KEY (product_name) REFERENCES graphics_card(product_name),
-    FOREIGN KEY (product_name) REFERENCES processor(product_name),
-    FOREIGN KEY (product_name) REFERENCES hdd_drives(product_name),
-    FOREIGN KEY (product_name) REFERENCES power_supply(product_name),
-    FOREIGN KEY (product_name) REFERENCES tower_cooling(product_name),
-    FOREIGN KEY (product_name) REFERENCES water_cooling(product_name),
-    FOREIGN KEY (product_name) REFERENCES ssd_drives(product_name)
-);          
+    CONSTRAINT FK_product_name UNIQUE (product_name),
+    CONSTRAINT FK_product_code UNIQUE (product_code),
+    primary key (product_code, product_name, product_type),
+    foreign key (product_type) references product_types(type_id)
+);
 
 CREATE TABLE product_types (
 	type_id INT NOT NULL,
@@ -177,3 +198,52 @@ CREATE TABLE `roles` (
   PRIMARY KEY (`role_id`),
   UNIQUE KEY `role_id` (`role_id`)
 );
+
+CREATE TRIGGER auto_add_ram   
+BEFORE INSERT ON ram FOR EACH ROW INSERT INTO product VALUES (NEW.product_id, NEW.product_name, 1);
+
+CREATE TRIGGER auto_add_ssd_drives   
+BEFORE INSERT ON ssd_drives FOR EACH ROW INSERT INTO product VALUES (NEW.product_id, NEW.product_name, 6);
+
+CREATE TRIGGER auto_add_hdd_drives   
+BEFORE INSERT ON hdd_drives FOR EACH ROW INSERT INTO product VALUES (NEW.product_id, NEW.product_name, 7);
+
+CREATE TRIGGER auto_add_processor  
+BEFORE INSERT ON processor FOR EACH ROW INSERT INTO product VALUES (NEW.product_id, NEW.product_name, 5);
+
+CREATE TRIGGER auto_add_tower_cooling  
+BEFORE INSERT ON tower_cooling FOR EACH ROW INSERT INTO product VALUES (NEW.product_id, NEW.product_name, 4);
+
+CREATE TRIGGER auto_add_water_cooling
+BEFORE INSERT ON water_cooling FOR EACH ROW INSERT INTO product VALUES (NEW.product_id, NEW.product_name, 3);
+
+CREATE TRIGGER auto_add_power_supply   
+BEFORE INSERT ON power_supply FOR EACH ROW INSERT INTO product VALUES (NEW.product_id, NEW.product_name, 8);
+
+CREATE TRIGGER auto_add_graphics   
+BEFORE INSERT ON graphics_card FOR EACH ROW INSERT INTO product VALUES (NEW.product_id, NEW.product_name, 2);
+
+-- Delete triggers
+CREATE TRIGGER auto_delete_graphics   
+AFTER DELETE ON graphics_card FOR EACH ROW DELETE FROM product WHERE product_code=old.product_id;
+
+CREATE TRIGGER auto_delete_ram   
+AFTER DELETE ON ram FOR EACH ROW DELETE FROM product WHERE product_code=old.product_id;
+
+CREATE TRIGGER auto_delete_ssd 
+AFTER DELETE ON ssd_drives FOR EACH ROW DELETE FROM product WHERE product_code=old.product_id;
+
+CREATE TRIGGER auto_delete_hdd   
+AFTER DELETE ON hdd_drives FOR EACH ROW DELETE FROM product WHERE product_code=old.product_id;
+
+CREATE TRIGGER auto_delete_tower_cooling
+AFTER DELETE ON tower_cooling FOR EACH ROW DELETE FROM product WHERE product_code=old.product_id;
+
+CREATE TRIGGER auto_delete_water_cooling
+AFTER DELETE ON water_cooling FOR EACH ROW DELETE FROM product WHERE product_code=old.product_id;
+
+CREATE TRIGGER auto_delete_processor
+AFTER DELETE ON processor FOR EACH ROW DELETE FROM product WHERE product_code=old.product_id;
+
+CREATE TRIGGER auto_delete_power_supply
+AFTER DELETE ON power_supply FOR EACH ROW DELETE FROM product WHERE product_code=old.product_id;

@@ -176,7 +176,7 @@ namespace LoginForm
 
                     connection.Open();
                     HashSalt hashSalt = GenerateSaltedHash(10, password);
-                    string slq_query = $"INSERT INTO Users VALUES ({new_id}, '{login}', '{hashSalt.Hash}', '{hashSalt.Salt}', '{name}', '{last_name}', '{email}', 3, '{curdate}', '{curdate}')";
+                    string slq_query = $"INSERT INTO Users VALUES ({new_id}, '{login}', '{hashSalt.Hash}', '{hashSalt.Salt}', '{name}', '{last_name}', '{email}', 2, '{curdate}', '{curdate}')";
 
                     using (var cmd = new MySqlCommand(slq_query, connection))
                     {
