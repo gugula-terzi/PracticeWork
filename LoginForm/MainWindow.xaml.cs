@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -33,7 +34,21 @@ namespace LoginForm
     public partial class MainWindow : Window
     {
         static public AuthorizationData AuthData;
-        
+
+        public bool IsConnectedToInternet()
+        {
+            string host = "https://www.google.com/";
+            bool result = false;
+            Ping p = new Ping();
+            try
+            {
+                PingReply reply = p.Send(host, 3000);
+                if (reply.Status == IPStatus.Success)
+                    return true;
+            }
+            catch { }
+            return result;
+        }
 
         public MainWindow()
         {
@@ -54,7 +69,7 @@ namespace LoginForm
             //    text_start_password.Begin();
             //else
             //    return;
-        }
+    }
 
         private void NavPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -187,11 +202,13 @@ namespace LoginForm
                     //1045: Invalid user name and/or password.
                     switch (ex.Number)
                     {
-                        case 0:
-                            MessageBox.Show("Cannot connect to server. Contact administrator");
+                        case 1042:
+                            MessageWindow message = new MessageWindow("Cannot connect to server. Please check your internet connection.", "warning");
+                            message.Show();
                             break;
                         default:
-                            MessageBox.Show(ex.Message);
+                            message = new MessageWindow(ex.Message, "warning");
+                            message.Show();
                             break;
                     }
                 }

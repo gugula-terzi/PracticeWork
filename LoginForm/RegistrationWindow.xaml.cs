@@ -169,7 +169,7 @@ namespace LoginForm
 
                         while (read_id.Read())
                         {
-                            new_id = read_id.GetInt32(0) + 1; // writing maximum id from Users tabl to string variable
+                            new_id = read_id.GetInt32(0) + 1; // writing maximum id from Users table to string variable
                         }
                     }
                     connection.Close();

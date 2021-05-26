@@ -14,9 +14,9 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="ClearType"
         TextOptions.TextHintingMode="Animated"
-        MinWidth="1100"
-        MinHeight="650"
-        Title="StoreWindow" Height="650" Width="1200">
+        MinWidth="1200"
+        MinHeight="750"
+        Title="StoreWindow" Height="750" Width="1200">
 
     <Window.Resources>
         <DataTemplate x:Key="GraphicsCardsItemTemplate">
@@ -34,11 +34,10 @@
                                 HorizontalAlignment="Stretch">
                         <Grid Width="200"
                               Height="200"
-                              Background="Black"
-                              Opacity="0.3">
+                              Background="#4C000000">
                             <Border CornerRadius="10"/>
-                            <Image Width="150"
-                                   Height="150"
+                            <Image Width="200"
+                                   Height="200"
                                    Source="{Binding Path=Image}"/>
                         </Grid>
                         <StackPanel Margin="10, 10, 150, 10">
@@ -83,11 +82,13 @@
                                             FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel VerticalAlignment="Center"
-                                        HorizontalAlignment="Center">
-                            <StackPanel Orientation="Horizontal"
-                                            HorizontalAlignment="Center">
-                                <TextBlock Text="{Binding Path=Price}"
+                    </StackPanel>
+                </StackPanel>
+                <Grid HorizontalAlignment="Right"
+                              VerticalAlignment="Center"
+                              Margin="0 0 50 0">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Path=Price, StringFormat={}{0}$}"
                                             VerticalAlignment="Center"
                                             HorizontalAlignment="Center"
                                             FontSize="24"
@@ -95,27 +96,16 @@
                                             Margin="0, 0, 0, 10"
                                             Foreground="white"
                                             FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
-                                <TextBlock Text="$"
-                                                FontSize="24"
-                                                FontWeight="Bold"
-                                               Foreground="white"
-                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal"
-                                        HorizontalAlignment="Center">
-                                <Button Width="100"
-                                        HorizontalAlignment="Center"
+                        <Button Width="100"
                                         Height="35"
-                                        Visibility="Hidden"
-                                        Style="{DynamicResource FilledBlueButton}">
-                                    <materialDesign:PackIcon Kind="Cart"
+                                        Style="{DynamicResource FilledBlueButton}"
+                                        Margin="0, 0, 5, 0">
+                            <materialDesign:PackIcon Kind="Cart"
                                                             Width="25"
                                                             Height="25"/>
-                                </Button>
-                            </StackPanel>
-                        </StackPanel>
+                        </Button>
                     </StackPanel>
-                </StackPanel>
+                </Grid>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="ProcessorsItemTemplate">
@@ -134,12 +124,11 @@
                                     HorizontalAlignment="Stretch">
                         <StackPanel Width="200"
                                     Height="200"
-                                    Background="Black"
-                                    Opacity="0.3">
+                                    Background="#4C000000">
                             <Border CornerRadius="10"/>
-                            <Image Width="150"
-                                   Height="150"
-                                   Margin="0 20 0 0"
+                            <Image Width="200"
+                                   Height="200"
+                                   Margin="0 0 0 0"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Source="{Binding Path=Image}"/>
@@ -197,37 +186,30 @@
                                             FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel VerticalAlignment="Center">
-                            <StackPanel Orientation="Horizontal"
-                                        HorizontalAlignment="Center">
-                                <TextBlock Text="{Binding Path=Price}"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        FontSize="24"
-                                        FontWeight="Bold"
-                                        Margin="0, 0, 0, 10"
-                                        Foreground="white"
-                                        FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
-                                <TextBlock Text="$"
+                    </StackPanel>
+                </StackPanel>
+                <Grid HorizontalAlignment="Right"
+                              VerticalAlignment="Center"
+                              Margin="0 0 50 0">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Path=Price, StringFormat={}{0}$}"
+                                            VerticalAlignment="Center"
                                             HorizontalAlignment="Center"
                                             FontSize="24"
                                             FontWeight="Bold"
-                                           Foreground="white"
-                                        FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Width="100"
+                                            Margin="0, 0, 0, 10"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                        <Button Width="100"
                                         Height="35"
                                         Style="{DynamicResource FilledBlueButton}"
                                         Margin="0, 0, 5, 0">
-                                    <materialDesign:PackIcon Kind="Cart"
+                            <materialDesign:PackIcon Kind="Cart"
                                                             Width="25"
                                                             Height="25"/>
-                                </Button>
-                            </StackPanel>
-                        </StackPanel>
+                        </Button>
                     </StackPanel>
-                </StackPanel>
+                </Grid>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="RAMItemTemplate">
@@ -246,8 +228,7 @@
                                     HorizontalAlignment="Stretch">
                         <StackPanel Width="200"
                                           Height="200"
-                                          Background="Black"
-                                          Opacity="0.3">
+                                          Background="#4C000000">
                             <Border CornerRadius="10"/>
                             <Image Width="200"
                                    Height="200"
@@ -306,37 +287,30 @@
                                             FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel VerticalAlignment="Center">
-                            <StackPanel Orientation="Horizontal"
-                                        HorizontalAlignment="Center">
-                                <TextBlock Text="{Binding Path=Price}"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        FontSize="24"
-                                        FontWeight="Bold"
-                                        Margin="0, 0, 0, 10"
-                                        Foreground="white"
-                                        FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
-                                <TextBlock Text="$"
+                    </StackPanel>
+                </StackPanel>
+                <Grid HorizontalAlignment="Right"
+                              VerticalAlignment="Center"
+                              Margin="0 0 50 0">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Path=Price, StringFormat={}{0}$}"
+                                            VerticalAlignment="Center"
                                             HorizontalAlignment="Center"
                                             FontSize="24"
                                             FontWeight="Bold"
-                                           Foreground="white"
-                                        FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Width="100"
+                                            Margin="0, 0, 0, 10"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                        <Button Width="100"
                                         Height="35"
                                         Style="{DynamicResource FilledBlueButton}"
                                         Margin="0, 0, 5, 0">
-                                    <materialDesign:PackIcon Kind="Cart"
+                            <materialDesign:PackIcon Kind="Cart"
                                                             Width="25"
                                                             Height="25"/>
-                                </Button>
-                            </StackPanel>
-                        </StackPanel>
+                        </Button>
                     </StackPanel>
-                </StackPanel>
+                </Grid>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="SSDItemTemplate">
@@ -355,12 +329,11 @@
                                     HorizontalAlignment="Stretch">
                         <StackPanel Width="200"
                                           Height="200"
-                                          Background="Black"
-                                          Opacity="0.3">
+                                          Background="#4C000000">
                             <Border CornerRadius="10"/>
-                            <Image Width="150"
-                                   Height="150"
-                                   Margin="0 20 0 0"
+                            <Image Width="200"
+                                   Height="200"
+                                   Margin="0 0 0 0"
                                    Source="{Binding Path=Image}"/>
                         </StackPanel>
                         <StackPanel VerticalAlignment="Stretch"
@@ -386,7 +359,7 @@
                                             FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="FormFactor: "
+                                <TextBlock Text="Form factor: "
                                             FontSize="16"
                                             Foreground="white"
                                             FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
@@ -426,10 +399,461 @@
                                             FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel VerticalAlignment="Center">
-                            <StackPanel Orientation="Horizontal"
-                                        HorizontalAlignment="Center">
-                                <TextBlock Text="{Binding Path=Price}"
+                    </StackPanel>
+                </StackPanel>
+                <Grid HorizontalAlignment="Right"
+                              VerticalAlignment="Center"
+                              Margin="0 0 50 0">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Path=Price, StringFormat={}{0}$}"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            FontSize="24"
+                                            FontWeight="Bold"
+                                            Margin="0, 0, 0, 10"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                        <Button Width="100"
+                                        Height="35"
+                                        Style="{DynamicResource FilledBlueButton}"
+                                        Margin="0, 0, 5, 0">
+                            <materialDesign:PackIcon Kind="Cart"
+                                                            Width="25"
+                                                            Height="25"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="HDDItemTemplate">
+            <Grid>
+                <Border CornerRadius="10" Background="#FF151515"
+                            HorizontalAlignment="Stretch"/>
+                <StackPanel Margin="20"
+                                HorizontalAlignment="Stretch">
+                    <TextBlock Text="{Binding Path=ProductName}"
+                               FontSize="20"
+                               Margin="0, 0, 0, 10"
+                               Foreground="#FFAEAEE2"
+                               FontWeight="Bold" 
+                               FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                    <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Stretch">
+                        <StackPanel Width="200"
+                                          Height="200"
+                                          Background="#4C000000">
+                            <Border CornerRadius="10"/>
+                            <Image Width="200"
+                                   Height="200"
+                                   Margin="0 0 0 0"
+                                   Source="{Binding Path=Image}"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Stretch"
+                                        Margin="10, 10, 150, 10">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Interface Type: "
+                                           FontSize="16"
+                                           Foreground="white"
+                                           FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=InterfaceType}"
+                                           FontSize="16"
+                                           Foreground="white"
+                                           FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Capacity: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=Capacity}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Form factor: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=FormFactor}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Spindle speed: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=SpindleSpeed}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Cache capacity: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=CacheCapacity}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <Grid HorizontalAlignment="Right"
+                              VerticalAlignment="Center"
+                              Margin="0 0 50 0">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Path=Price, StringFormat={}{0}$}"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            FontSize="24"
+                                            FontWeight="Bold"
+                                            Margin="0, 0, 0, 10"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                        <Button Width="100"
+                                        Height="35"
+                                        Style="{DynamicResource FilledBlueButton}"
+                                        Margin="0, 0, 5, 0">
+                            <materialDesign:PackIcon Kind="Cart"
+                                                            Width="25"
+                                                            Height="25"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="WaterCoolingItemTemplate">
+            <Grid>
+                <Border CornerRadius="10" Background="#FF151515"
+                            HorizontalAlignment="Stretch"/>
+                <StackPanel Margin="20"
+                                HorizontalAlignment="Stretch">
+                    <TextBlock Text="{Binding Path=ProductName}"
+                               FontSize="20"
+                               Margin="0, 0, 0, 10"
+                               Foreground="#FFAEAEE2"
+                               FontWeight="Bold" 
+                               FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                    <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Stretch">
+                        <StackPanel Width="200"
+                                          Height="200"
+                                          Background="#4C000000">
+                            <Border CornerRadius="10"/>
+                            <Image Width="200"
+                                   Height="200"
+                                   Margin="0 0 0 0"
+                                   Source="{Binding Path=Image}"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Stretch"
+                                        Margin="10, 10, 150, 10">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Fan size: "
+                                           FontSize="16"
+                                           Foreground="white"
+                                           FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=FanSize}"
+                                           FontSize="16"
+                                           Foreground="white"
+                                           FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="CPU Socket: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=CPU_Socket}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Cooler type: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=CoolerType}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Installed fans: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=InstalledFans}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Max. volume: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=MaxVolume}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <Grid HorizontalAlignment="Right"
+                              VerticalAlignment="Center"
+                              Margin="0 0 50 0">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Path=Price, StringFormat={}{0}$}"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            FontSize="24"
+                                            FontWeight="Bold"
+                                            Margin="0, 0, 0, 10"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                        <Button Width="100"
+                                        Height="35"
+                                        Style="{DynamicResource FilledBlueButton}"
+                                        Margin="0, 0, 5, 0">
+                            <materialDesign:PackIcon Kind="Cart"
+                                                            Width="25"
+                                                            Height="25"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="TowerCoolingItemTemplate">
+            <Grid>
+                <Border CornerRadius="10" Background="#FF151515"
+                            HorizontalAlignment="Stretch"/>
+                <StackPanel Margin="20"
+                                HorizontalAlignment="Stretch">
+                    <TextBlock Text="{Binding Path=ProductName}"
+                               FontSize="20"
+                               Margin="0, 0, 0, 10"
+                               Foreground="#FFAEAEE2"
+                               FontWeight="Bold" 
+                               FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                    <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Stretch">
+                        <StackPanel Width="200"
+                                          Height="200"
+                                          Background="#4C000000">
+                            <Border CornerRadius="10"/>
+                            <Image Width="200"
+                                   Height="200"
+                                   Margin="0 0 0 0"
+                                   Source="{Binding Path=Image}"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Stretch"
+                                        Margin="10, 10, 150, 10">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Speed range: "
+                                           FontSize="16"
+                                           Foreground="white"
+                                           FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=SpeedRange}"
+                                           FontSize="16"
+                                           Foreground="white"
+                                           FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Height: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=Height}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Weight: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=Weight}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Fan size: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=FanSize}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Cooler type: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=CoolerType}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="CPU Socket: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=CPU_Socket}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Max. volume: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=MaxVolume}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <Grid HorizontalAlignment="Right"
+                              VerticalAlignment="Center"
+                              Margin="0 0 50 0">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Path=Price, StringFormat={}{0}$}"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            FontSize="24"
+                                            FontWeight="Bold"
+                                            Margin="0, 0, 0, 10"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                        <Button Width="100"
+                                        Height="35"
+                                        Style="{DynamicResource FilledBlueButton}"
+                                        Margin="0, 0, 5, 0">
+                            <materialDesign:PackIcon Kind="Cart"
+                                                            Width="25"
+                                                            Height="25"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="PowerSupplyItemTemplate">
+            <Grid>
+                <Border CornerRadius="10" Background="#FF151515"
+                            HorizontalAlignment="Stretch"/>
+                <StackPanel Margin="20"
+                                HorizontalAlignment="Stretch">
+                    <TextBlock Text="{Binding Path=ProductName}"
+                               FontSize="20"
+                               Margin="0, 0, 0, 10"
+                               Foreground="#FFAEAEE2"
+                               FontWeight="Bold" 
+                               FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                    <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Stretch">
+                        <StackPanel Width="200"
+                                          Height="200"
+                                          Background="#4C000000">
+                            <Border CornerRadius="10"/>
+                            <Image Width="200"
+                                   Height="200"
+                                   Margin="0 0 0 0"
+                                   Source="{Binding Path=Image}"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Stretch"
+                                        Margin="10, 10, 150, 10">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Power: "
+                                           FontSize="16"
+                                           Foreground="white"
+                                           FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=Power}"
+                                           FontSize="16"
+                                           Foreground="white"
+                                           FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Cable management: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=CableManagement}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="SATA connectors: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=SataConnectors}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Form factor: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=FormFactor}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="PCIe 8pin Connectors: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=PCI_8pin}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="PCIe 6pin Connectors: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=PCI_6pin}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Molex connectors: "
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                                <TextBlock Text="{Binding Path=Molex}"
+                                            FontSize="16"
+                                            Foreground="white"
+                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <Grid HorizontalAlignment="Right"
+                      VerticalAlignment="Center"
+                      Margin="0 0 50 0">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Path=Price, StringFormat={}{0}$}"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
                                         FontSize="24"
@@ -437,26 +861,16 @@
                                         Margin="0, 0, 0, 10"
                                         Foreground="white"
                                         FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
-                                <TextBlock Text="$"
-                                            HorizontalAlignment="Center"
-                                            FontSize="24"
-                                            FontWeight="Bold"
-                                           Foreground="white"
-                                        FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Width="100"
+                        <Button Width="100"
                                         Height="35"
                                         Style="{DynamicResource FilledBlueButton}"
                                         Margin="0, 0, 5, 0">
-                                    <materialDesign:PackIcon Kind="Cart"
+                            <materialDesign:PackIcon Kind="Cart"
                                                             Width="25"
                                                             Height="25"/>
-                                </Button>
-                            </StackPanel>
-                        </StackPanel>
+                        </Button>
                     </StackPanel>
-                </StackPanel>
+                </Grid>
             </Grid>
         </DataTemplate>
     </Window.Resources>
@@ -488,7 +902,7 @@
                     </Border>
                     <StackPanel Width="230"
                                 Height="100"
-                                Margin="0 30 0 0"
+                                Margin="0 10 0 0"
                                 VerticalAlignment="Top">
                         <Border CornerRadius="10"
                                 Background="#59000000">
@@ -578,6 +992,84 @@
                                            FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
                             </StackPanel>
                         </Button>
+                        <Button Height="50"
+                                Style="{DynamicResource MenuButton}"
+                                Name="HDDTableBtn"
+                                HorizontalContentAlignment="Left"
+                                Click="HDDTableBtn_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Images/background/hdd.png"
+                                       VerticalAlignment="Center"
+                                       Width="30"
+                                       Height="30"
+                                       Margin="10 0 0 0"
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <TextBlock Text="HDD drives"
+                                           FontSize="18"
+                                           Margin="18, 0, 0, 0"
+                                           VerticalAlignment="Center" 
+                                           FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Height="50"
+                                Style="{DynamicResource MenuButton}"
+                                Name="WaterCoolingTableBtn"
+                                Margin="0 10"
+                                HorizontalContentAlignment="Left"
+                                Click="WaterCoolingTableBtn_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Images/background/fan_water.png"
+                                       VerticalAlignment="Center"
+                                       Width="35"
+                                       Height="35"
+                                       Margin="10 0 0 0"
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <TextBlock Text="Water cooling"
+                                           FontSize="18"
+                                           Margin="15, 0, 0, 0"
+                                           VerticalAlignment="Center" 
+                                           FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Height="50"
+                                Style="{DynamicResource MenuButton}"
+                                Name="TowerCoolingTableBtn"
+                                HorizontalContentAlignment="Left"
+                                Click="TowerCoolingTableBtn_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Images/background/fan.png"
+                                       VerticalAlignment="Center"
+                                       Width="35"
+                                       Height="35"
+                                       Margin="10 0 0 0"
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <TextBlock Text="Tower cooling"
+                                           FontSize="18"
+                                           Margin="15, 0, 0, 0"
+                                           VerticalAlignment="Center" 
+                                           FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Height="50"
+                                Style="{DynamicResource MenuButton}"
+                                Name="PowerSupplyTableBtn"
+                                Margin="0 10"
+                                HorizontalContentAlignment="Left"
+                                Click="PowerSupplyTableBtn_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Images/background/power-supply.png"
+                                       VerticalAlignment="Center"
+                                       Width="35"
+                                       Height="35"
+                                       Margin="10 0 0 0"
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <TextBlock Text="Power supply"
+                                           FontSize="18"
+                                           Margin="15, 0, 0, 0"
+                                           VerticalAlignment="Center" 
+                                           FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"/>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Column="1">
@@ -585,21 +1077,70 @@
                         <RowDefinition Height="100"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0"
+                    <Grid Grid.Row="0"
                                 VerticalAlignment="Stretch"
                                 Name="NavPanel"
-                                Background="Transparent"                                
+                                Margin="20"
+                                Background="Transparent" 
                                 MouseDown="NavPanel_MouseDown">
-                        <StackPanel Orientation="Horizontal"/>
-                    </StackPanel>
+                        <Button Height="35"
+                                Width="35"
+                                HorizontalAlignment="Right"      
+                                VerticalAlignment="Top"
+                                x:Name="Close"
+                                Click="Close_Click"
+                                Style="{DynamicResource OutlineButton}">
+                            <materialDesign:PackIcon Kind="Close"
+                                         Width="29"
+                                         Height="29"
+                                         Foreground="white"/>
+                        </Button>
+                        <Button Width="130"
+                                Height="45"
+                                Padding="10 0"
+                                HorizontalAlignment="Left"
+                                Style="{DynamicResource FilledBlueButton}"
+                                Margin="0, 0, 0, 0">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Cart"
+                                                     Width="30"
+                                                     Height="30"/>
+                                <TextBlock Text="Basket"
+                                           FontWeight="Bold"
+                                           Margin="10 0 0 0"
+                                           FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"
+                                           VerticalAlignment="Center"
+                                           FontSize="20"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Width="130"
+                                Height="45"
+                                Padding="10 0"
+                                HorizontalAlignment="Left"
+                                Style="{DynamicResource FilledBlueButton}"
+                                Margin="150, 0, 0, 0">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="LogoutVariant"
+                                                     Width="30"
+                                                     Height="30"/>
+                                <TextBlock Text="Logout"
+                                           Margin="10 0 0 0"
+                                           FontWeight="Bold"
+                                           FontFamily="/LoginForm;component/Fonts/#Rounded Mplus 1c"
+                                           VerticalAlignment="Center"
+                                           FontSize="20"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
                     <Grid Grid.Row="1">
                         <Grid Margin="20, 0, 20, 20">
                             <ListBox Background="Transparent"
                                      Name="ProductsList"
-                                     BorderThickness="0"
+                                     BorderThickness="2"
+                                     BorderBrush="#FF5D6FD0"
                                      ScrollViewer.CanContentScroll="False"
                                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                                     HorizontalContentAlignment="Stretch">
+                                     HorizontalContentAlignment="Stretch" Style="{DynamicResource ListBoxStyle1}">
                             </ListBox>
                         </Grid>
                     </Grid>

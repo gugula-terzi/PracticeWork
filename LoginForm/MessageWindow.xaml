@@ -13,7 +13,7 @@
         WindowStartupLocation="CenterScreen"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Grayscale"
-        Title="Message" Height="auto" Width="400">
+        Title="Message" Height="auto" Width="500" >
     
     <Grid Name="NavPanel"
           MouseDown="NavPanel_MouseDown">
@@ -48,6 +48,7 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Stretch"
                        Text=""
+                       Width="375"
                        Foreground="WhiteSmoke"
                        TextOptions.TextHintingMode="Animated"
                        TextWrapping="Wrap"

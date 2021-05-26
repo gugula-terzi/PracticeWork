@@ -142,7 +142,7 @@ namespace LoginForm
         {
 
             ProductsList.ItemTemplate = (DataTemplate)ProductsList.FindResource("GraphicsCardsItemTemplate");
-            string sql_query = "SELECT product_name, vram_type, vram_capacity, bus_width, connectors, price FROM graphics_card;";
+            string sql_query = "SELECT image, product_name, vram_type, vram_capacity, bus_width, connectors, price FROM graphics_card;";
 
             GraphicsCards = new ObservableCollection<GraphicsCard>();
 
@@ -162,13 +162,13 @@ namespace LoginForm
                             GraphicsCards.Add(
                                 new GraphicsCard
                                 {
-                                    Image = "Images/background/graphics-card.png",
-                                    ProductName = reader.GetString(0),                                    
-                                    VRAMType = reader.GetString(1),
-                                    VRAMCapacity = reader.GetString(2),
-                                    BusWidth = reader.GetString(3),
-                                    Connectors = reader.GetString(4),
-                                    Price = reader.GetValue(5).ToString()
+                                    Image = reader.IsDBNull(reader.GetOrdinal("image")) ? "Images/background/graphics-card.png" : @reader.GetString(0),
+                                    ProductName = reader.GetString(1),                                    
+                                    VRAMType = reader.GetString(2),
+                                    VRAMCapacity = reader.GetString(3),
+                                    BusWidth = reader.GetString(4),
+                                    Connectors = reader.GetString(5),
+                                    Price = reader.GetValue(6).ToString()
                                 }
                             );
                         }
@@ -176,7 +176,8 @@ namespace LoginForm
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageWindow message = new MessageWindow(ex.Message, "error");
+                    message.Show();
                 }
                 finally
                 {
@@ -192,7 +193,7 @@ namespace LoginForm
         private void ProcessorTableBtn_Click(object sender, RoutedEventArgs e)
         {
             ProductsList.ItemTemplate = (DataTemplate)ProductsList.FindResource("ProcessorsItemTemplate");
-            string sql_query = "SELECT product_name, cpu_socket, cpu_cores, threads, cpu_speed, integrated_graphics, price FROM processor;";
+            string sql_query = "SELECT image, product_name, cpu_socket, cpu_cores, threads, cpu_speed, integrated_graphics, price FROM processor;";
 
             Processors = new ObservableCollection<Processor>();
 
@@ -212,14 +213,14 @@ namespace LoginForm
                             Processors.Add(
                                 new Processor
                                 {
-                                    Image = "Images/background/chip.png",
-                                    ProductName = reader.GetString(0),
-                                    CPUSocket = reader.GetString(1),
-                                    CPUCores = reader.GetString(2),
-                                    Threads = reader.GetString(3),
-                                    CPUSpeed = reader.GetString(4),
-                                    IntegratedGraphics = reader.GetString(5),
-                                    Price = reader.GetValue(6).ToString()
+                                    Image = reader.IsDBNull(reader.GetOrdinal("image")) ? "Images/background/chip.png" : @reader.GetString(0),
+                                    ProductName = reader.GetString(1),
+                                    CPUSocket = reader.GetString(2),
+                                    CPUCores = reader.GetString(3),
+                                    Threads = reader.GetString(4),
+                                    CPUSpeed = reader.GetString(5),
+                                    IntegratedGraphics = reader.GetString(6),
+                                    Price = reader.GetValue(7).ToString()
                                 }
                             );
                         }
@@ -227,7 +228,8 @@ namespace LoginForm
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageWindow message = new MessageWindow(ex.Message, "error");
+                    message.Show();
                 }
                 finally
                 {
@@ -243,7 +245,7 @@ namespace LoginForm
         private void RAMTableBtn_Click(object sender, RoutedEventArgs e)
         {
             ProductsList.ItemTemplate = (DataTemplate)ProductsList.FindResource("RAMItemTemplate");
-            string sql_query = "SELECT product_name, ddr_type, frequency, capacity, num_of_modules, type, price FROM ram;";
+            string sql_query = "SELECT image, product_name, ddr_type, frequency, capacity, num_of_modules, type, price FROM ram;";
             RAMs = new ObservableCollection<RAM>();
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -262,14 +264,14 @@ namespace LoginForm
                             RAMs.Add(
                                 new RAM
                                 {
-                                    Image = "Images/background/ram.png",
-                                    ProductName = reader.GetString(0),
-                                    DDRType = reader.GetString(1),
-                                    Frequency = reader.GetString(2),
-                                    Capacity = reader.GetString(3),
-                                    NumOfModules = reader.GetString(4),
-                                    Type = reader.GetString(5),
-                                    Price = reader.GetValue(6).ToString()
+                                    Image = reader.IsDBNull(reader.GetOrdinal("image"))? "Images/background/ram.png" : @reader.GetString(0),
+                                    ProductName = reader.GetString(1),
+                                    DDRType = reader.GetString(2),
+                                    Frequency = reader.GetString(3),
+                                    Capacity = reader.GetString(4),
+                                    NumOfModules = reader.GetString(5),
+                                    Type = reader.GetString(6),
+                                    Price = reader.GetValue(7).ToString()
                                 }
                             );
                         }
@@ -277,7 +279,8 @@ namespace LoginForm
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageWindow message = new MessageWindow(ex.Message, "error");
+                    message.Show();
                 }
                 finally
                 {
@@ -320,7 +323,8 @@ namespace LoginForm
                     }
                     else
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageWindow message = new MessageWindow(ex.Message, "error");
+                        message.Show();
                     }
                 }
                 finally
@@ -344,7 +348,8 @@ namespace LoginForm
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    MessageWindow message = new MessageWindow(ex.Message, "error");
+                    message.Show();
                 }
                 finally
                 {
@@ -356,136 +361,12 @@ namespace LoginForm
 
         MessageWindow messageWindow;
 
-        private void AVGBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (ProductsList.ItemsSource == GraphicsCards)
-            {
-                string sql_query = "SELECT AVG(price) FROM graphics_card";
-                var value = Math.Round(double.Parse(GetScalar(sql_query).ToString()), 2, MidpointRounding.ToEven);
-                messageWindow = new MessageWindow("Average price: " + value.ToString() + "$", "information");
-                messageWindow.ShowDialog();
-            }
-            if (ProductsList.ItemsSource == RAMs)
-            {
-                string sql_query = "SELECT AVG(price) FROM ram";
-                var value = Math.Round(double.Parse(GetScalar(sql_query).ToString()), 2, MidpointRounding.ToEven);
-                messageWindow = new MessageWindow("Average price: " + value.ToString() + "$", "information");
-                messageWindow.ShowDialog();
-            }
-            if (ProductsList.ItemsSource == Processors)
-            {
-                string sql_query = "SELECT AVG(price) FROM processor";
-                var value = Math.Round(double.Parse(GetScalar(sql_query).ToString()), 2, MidpointRounding.ToEven);
-                messageWindow = new MessageWindow("Average price: " + value.ToString() + "$", "information");
-                messageWindow.ShowDialog();
-            }
-        }
-
-        private void MaxBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (ProductsList.ItemsSource == GraphicsCards)
-            {
-                string sql_query = "SELECT MAX(price) FROM graphics_card";
-                var value = Math.Round(double.Parse(GetScalar(sql_query).ToString()), 2, MidpointRounding.ToEven);
-                messageWindow = new MessageWindow("Maximum price: " + value.ToString() + "$", "information");
-                messageWindow.ShowDialog();
-            }
-            if (ProductsList.ItemsSource == RAMs)
-            {
-                string sql_query = "SELECT MAX(price) FROM ram";
-                var value = Math.Round(double.Parse(GetScalar(sql_query).ToString()), 2, MidpointRounding.ToEven);
-                messageWindow = new MessageWindow("Maximum price: " + value.ToString() + "$", "information");
-                messageWindow.ShowDialog();
-            }
-            if (ProductsList.ItemsSource == Processors)
-            {
-                string sql_query = "SELECT MAX(price) FROM processor";
-                var value = Math.Round(double.Parse(GetScalar(sql_query).ToString()), 2, MidpointRounding.ToEven);
-                messageWindow = new MessageWindow("Maximum price: " + value.ToString() + "$", "information");
-                messageWindow.ShowDialog();
-            }
-        }
-
-        private void TotalBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (ProductsList.ItemsSource == GraphicsCards)
-            {
-                string sql_query = "SELECT COUNT(price) FROM graphics_card";
-                var value = Math.Round(double.Parse(GetScalar(sql_query).ToString()), 2, MidpointRounding.ToEven);
-                messageWindow = new MessageWindow("Total count of products: " + value.ToString(), "information");
-                messageWindow.ShowDialog();
-            }
-            if (ProductsList.ItemsSource == RAMs)
-            {
-                string sql_query = "SELECT COUNT(price) FROM ram";
-                var value = Math.Round(double.Parse(GetScalar(sql_query).ToString()), 2, MidpointRounding.ToEven);
-                messageWindow = new MessageWindow("Total count of products: " + value.ToString(), "information");
-                messageWindow.ShowDialog();
-            }
-            if (ProductsList.ItemsSource == Processors)
-            {
-                string sql_query = "SELECT COUNT(price) FROM processor";
-                var value = Math.Round(double.Parse(GetScalar(sql_query).ToString()), 2, MidpointRounding.ToEven);
-                messageWindow = new MessageWindow("Total count of products: " + value.ToString(), "information");
-                messageWindow.ShowDialog();
-            }
-        }
-
-        private void MinBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (ProductsList.ItemsSource == GraphicsCards)
-            {
-                string sql_query = "SELECT MIN(price) FROM graphics_card";
-                var value = Math.Round(double.Parse(GetScalar(sql_query).ToString()), 2, MidpointRounding.ToEven);
-                messageWindow = new MessageWindow("Minimum price: " + value.ToString() + "$", "information");
-                messageWindow.ShowDialog();
-            }
-            if (ProductsList.ItemsSource == RAMs)
-            {
-                string sql_query = "SELECT MIN(price) FROM ram";
-                var value = Math.Round(double.Parse(GetScalar(sql_query).ToString()), 2, MidpointRounding.ToEven);
-                messageWindow = new MessageWindow("Minimum price: " + value.ToString() + "$", "information");
-                messageWindow.ShowDialog();
-            }
-            if (ProductsList.ItemsSource == Processors)
-            {
-                string sql_query = "SELECT MIN(price) FROM processor";
-                var value = Math.Round(double.Parse(GetScalar(sql_query).ToString()), 2, MidpointRounding.ToEven);
-                messageWindow = new MessageWindow("Minimum price: " + value.ToString() + "$", "information");
-                messageWindow.ShowDialog();
-            }
-        }
-
-        private void SUMBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (ProductsList.ItemsSource == GraphicsCards)
-            {
-                string sql_query = "SELECT SUM(price) FROM graphics_card";
-                var value = Math.Round(double.Parse(GetScalar(sql_query).ToString()), 2, MidpointRounding.ToEven);
-                messageWindow = new MessageWindow("Total sum of products: " + value.ToString() + "$", "information");
-                messageWindow.ShowDialog();
-            }
-            if (ProductsList.ItemsSource == RAMs)
-            {
-                string sql_query = "SELECT SUM(price) FROM ram";
-                var value = Math.Round(double.Parse(GetScalar(sql_query).ToString()), 2, MidpointRounding.ToEven);
-                messageWindow = new MessageWindow("Total sum of products: " + value.ToString() + "$", "information");
-                messageWindow.ShowDialog();
-            }
-            if (ProductsList.ItemsSource == Processors)
-            {
-                string sql_query = "SELECT SUM(price) FROM processor";
-                var value = Math.Round(double.Parse(GetScalar(sql_query).ToString()), 2, MidpointRounding.ToEven);
-                messageWindow = new MessageWindow("Total sum of products: " + value.ToString() + "$", "information");
-                messageWindow.ShowDialog();
-            }
-        }
 
         public ObservableCollection<SSD_Drive> SSD_Drives { get; set; }
         private void SSDTableBtn_Click(object sender, RoutedEventArgs e)
         {
             ProductsList.ItemTemplate = (DataTemplate)ProductsList.FindResource("SSDItemTemplate");
-            string sql_query = "SELECT product_name, interface_type, capacity, form_factor, nvme, reading_speed, writing_speed, price FROM ssd_drives;";
+            string sql_query = "SELECT image, product_name, interface_type, capacity, form_factor, nvme, reading_speed, writing_speed, price FROM ssd_drives;";
             SSD_Drives = new ObservableCollection<SSD_Drive>();
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -504,15 +385,15 @@ namespace LoginForm
                             SSD_Drives.Add(
                                 new SSD_Drive
                                 {
-                                    Image = "Images/background/ssd-storage.png",
-                                    ProductName = reader.GetString(0),
-                                    InterfaceType = reader.GetString(1),
-                                    Capacity = reader.GetString(2),
-                                    FormFactor = reader.GetString(3),
-                                    NVMe = reader.GetBoolean(4)==true? "Yes" : "No",
-                                    ReadingSpeed = reader.GetString(5),
-                                    WritingSpeed = reader.GetString(6),
-                                    Price = reader.GetValue(7).ToString()
+                                    Image = reader.IsDBNull(reader.GetOrdinal("image")) ? "Images/background/ssd-storage.png" : @reader.GetString(0),
+                                    ProductName = reader.GetString(1),
+                                    InterfaceType = reader.GetString(2),
+                                    Capacity = reader.GetString(3),
+                                    FormFactor = reader.GetString(4),
+                                    NVMe = reader.GetBoolean(5)==true? "Yes" : "No",
+                                    ReadingSpeed = reader.GetString(6),
+                                    WritingSpeed = reader.GetString(7),
+                                    Price = reader.GetValue(8).ToString()
                                 }
                             );
                         }
@@ -520,7 +401,8 @@ namespace LoginForm
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageWindow message = new MessageWindow(ex.Message, "error");
+                    message.Show();
                 }
                 finally
                 {
@@ -529,6 +411,216 @@ namespace LoginForm
             }
 
             ProductsList.ItemsSource = SSD_Drives;
+        }
+
+
+        public ObservableCollection<HDD_Drive> HDD_Drives { get; set; }
+        private void HDDTableBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProductsList.ItemTemplate = (DataTemplate)ProductsList.FindResource("HDDItemTemplate");
+            string sql_query = "SELECT image, product_name, interface_type, capacity, form_factor, spindle_speed, cache_capacity, price FROM hdd_drives;";
+            HDD_Drives = new ObservableCollection<HDD_Drive>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    MySqlCommand cmd = new MySqlCommand(sql_query, connection);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            HDD_Drives.Add(
+                                new HDD_Drive
+                                {
+                                    Image = reader.IsDBNull(reader.GetOrdinal("image")) ? "Images/background/hdd.png" : @reader.GetString(0),
+                                    ProductName = reader.GetString(1),
+                                    InterfaceType = reader.GetString(2),
+                                    Capacity = reader.GetString(3),
+                                    FormFactor = reader.GetString(4),
+                                    SpindleSpeed = reader.GetString(5),
+                                    CacheCapacity = reader.GetString(6),
+                                    Price = reader.GetValue(7).ToString()
+                                }
+                            );
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageWindow message = new MessageWindow(ex.Message, "error");
+                    message.Show();
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            ProductsList.ItemsSource = HDD_Drives;
+        }
+
+        public ObservableCollection<WaterCooling> WaterCoolings { get; set; }
+        private void WaterCoolingTableBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProductsList.ItemTemplate = (DataTemplate)ProductsList.FindResource("WaterCoolingItemTemplate");
+            string sql_query = "SELECT image, product_name, fan_size, cpu_socket, cooler_type, installed_fans, max_volume, price FROM water_cooling;";
+            WaterCoolings = new ObservableCollection<WaterCooling>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    MySqlCommand cmd = new MySqlCommand(sql_query, connection);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            WaterCoolings.Add(
+                                new WaterCooling
+                                {
+                                    Image = reader.IsDBNull(reader.GetOrdinal("image")) ? "Images/background/fan_water.png" : @reader.GetString(0),
+                                    ProductName = reader.GetString(1),
+                                    FanSize = reader.GetString(2),
+                                    CPU_Socket = reader.GetString(3),
+                                    CoolerType = reader.GetString(4),
+                                    InstalledFans = reader.GetString(5),
+                                    MaxVolume = reader.GetString(6),
+                                    Price = reader.GetValue(7).ToString()
+                                }
+                            );
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageWindow message = new MessageWindow(ex.Message, "error");
+                    message.Show();
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            ProductsList.ItemsSource = WaterCoolings;
+        }
+
+        public ObservableCollection<TowerCooling> TowerCoolings { get; set; }
+        private void TowerCoolingTableBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProductsList.ItemTemplate = (DataTemplate)ProductsList.FindResource("TowerCoolingItemTemplate");
+            string sql_query = "SELECT image, product_name, speed_range, height, weight, fan_size, cooler_type, cpu_socket, max_volume, price FROM tower_cooling;";
+            TowerCoolings = new ObservableCollection<TowerCooling>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    MySqlCommand cmd = new MySqlCommand(sql_query, connection);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            TowerCoolings.Add(
+                                new TowerCooling
+                                {
+                                    Image = reader.IsDBNull(reader.GetOrdinal("image")) ? "Images/background/fan.png" : @reader.GetString(0),
+                                    ProductName = reader.GetString(1),
+                                    SpeedRange = reader.GetString(2),
+                                    Height = reader.GetString(3),
+                                    Weight = reader.GetString(4),
+                                    FanSize = reader.GetString(5),
+                                    CoolerType = reader.GetString(6),
+                                    CPU_Socket = reader.GetString(7),
+                                    MaxVolume = reader.GetString(8),
+                                    Price = reader.GetValue(9).ToString()
+                                }
+                            );
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageWindow message = new MessageWindow(ex.Message, "error");
+                    message.Show();
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            ProductsList.ItemsSource = TowerCoolings;
+        }
+
+        public ObservableCollection<PowerSupply> PowerSupplies { get; set; }
+        private void PowerSupplyTableBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProductsList.ItemTemplate = (DataTemplate)ProductsList.FindResource("PowerSupplyItemTemplate");
+            string sql_query = "SELECT image, product_name, power, cable_management, sata_connectors, form_factor, pcie_8pin_connectors, pcie_6pin_connectors, molex_connectors, price FROM power_supply;";
+            PowerSupplies = new ObservableCollection<PowerSupply>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    MySqlCommand cmd = new MySqlCommand(sql_query, connection);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            PowerSupplies.Add(
+                                new PowerSupply
+                                {
+                                    Image = reader.IsDBNull(reader.GetOrdinal("image")) ? "Images/background/fan.png" : @reader.GetString(0),
+                                    ProductName = reader.GetString(1),
+                                    Power = reader.GetString(2),
+                                    CableManagement = reader.GetBoolean(3) == true ? "Yes" : "No",
+                                    SataConnectors = reader.GetString(4),
+                                    FormFactor = reader.GetString(5),
+                                    PCI_8pin = reader.GetString(6),
+                                    PCI_6pin = reader.GetString(7),
+                                    Molex = reader.GetString(8),
+                                    Price = reader.GetValue(9).ToString()
+                                }
+                            );
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageWindow message = new MessageWindow(ex.Message, "error");
+                    message.Show();
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            ProductsList.ItemsSource = PowerSupplies;
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
